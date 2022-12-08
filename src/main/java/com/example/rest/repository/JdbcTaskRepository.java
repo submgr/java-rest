@@ -38,7 +38,7 @@ public class JdbcTaskRepository implements TaskRepository {
     public Task save(Task task) {
         PreparedStatementCreatorFactory psFactory = new PreparedStatementCreatorFactory(
                 "INSERT INTO tasks (user_id, title, description, date_of_creation, date_of_completion) values (?, ?, ?, ?, ?)",
-                Types.INTEGER, Types.VARCHAR, Types.VARCHAR, Types.TIMESTAMP, Types.TIMESTAMP);
+                Types.INTEGER, Types.VARCHAR, Types.VARCHAR);
         psFactory.setReturnGeneratedKeys(true);
 
         PreparedStatementCreator psCreator = psFactory.newPreparedStatementCreator(
@@ -58,11 +58,11 @@ public class JdbcTaskRepository implements TaskRepository {
     }
 
     private Task mapRowToTask(ResultSet row, int rowNumber) throws SQLException {
-        return new Task(row.getInt("id"),
-                row.getInt("user_id"),
-                row.getString("title"),
-                row.getString("description"),
-                row.getDate("date_of_creation"),
-                row.getDate("date_of_completion"));
+        return new Task(
+                row.getInt("id"),
+                row.getString("coords_latitude"),
+                row.getString("coords_longitude"),
+                row.getString("organisation"),
+                row.getInt("number"));
     }
 }

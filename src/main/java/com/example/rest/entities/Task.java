@@ -9,9 +9,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class Task {
     private int id;
-    private int userId;
-    private String title;
-    private String description;
-    private Date dateOfCreation;
-    private Date dateOfCompletion;
+    private String coords_latitude;
+    private String coords_longitude;
+    private String organisation;
+    private int number;
 }

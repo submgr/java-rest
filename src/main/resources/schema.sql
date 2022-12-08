@@ -1,20 +1,16 @@
 CREATE TABLE IF NOT EXISTS users (
     id IDENTITY NOT NULL,
-    name VARCHAR NOT NULL UNIQUE,
+    login VARCHAR NOT NULL UNIQUE,
     password VARCHAR NOT NULL,
-
-    PRIMARY KEY (id)
+    score INT DEFAULT 0,
 );
 
 
-CREATE TABLE IF NOT EXISTS tasks (
+CREATE TABLE IF NOT EXISTS recycle_points (
     id IDENTITY NOT NULL,
-    user_id BIGINT NOT NULL,
-    title VARCHAR NOT NULL,
-    description VARCHAR NOT NULL,
-    date_of_creation TIMESTAMP NOT NULL,
-    date_of_completion TIMESTAMP,
-
-    PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    coords_latitude VARCHAR NOT NULL,
+    coords_longitude VARCHAR NOT NULL,
+    organisation VARCHAR NOT NULL,
+    number INT NOT NULL
 );
+--REAL CHECK
