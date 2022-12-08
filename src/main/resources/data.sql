@@ -1,6 +1,6 @@
 --Набор тестовых данных
 DELETE
-FROM recycle_points;
+FROM recycling_points;
 
 
 DELETE

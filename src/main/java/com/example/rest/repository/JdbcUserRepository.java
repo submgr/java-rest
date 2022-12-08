@@ -29,7 +29,7 @@ public class JdbcUserRepository implements UserRepository {
     @Override
     public Optional<User> findByNameAndPassword(String name, String password) {
         List<User> users = jdbcTemplate.query(
-                "SELECT id, name, password FROM users WHERE name = ? AND password = ?",
+                "SELECT id, login, password, score FROM users WHERE name = ? AND password = ?",
                 this::mapRowToUser,
                 name,
                 password);
@@ -39,23 +39,27 @@ public class JdbcUserRepository implements UserRepository {
     @Override
     public User save(User user) {
         PreparedStatementCreatorFactory psFactory = new PreparedStatementCreatorFactory(
-                "INSERT INTO users (name, password) values (?, ?)",
+                "INSERT INTO users (login, password) values (?, ?)",
                 Types.VARCHAR, Types.VARCHAR);
         psFactory.setReturnGeneratedKeys(true);
 
         PreparedStatementCreator psCreator = psFactory.newPreparedStatementCreator(
-                Arrays.asList(user.getName(), user.getPassword()));
+                Arrays.asList(user.getLogin(), user.getPassword()));
 
         KeyHolder holder = new GeneratedKeyHolder();
         jdbcTemplate.update(psCreator, holder);
 
-        user.setId(holder.getKey().intValue());
+        Number key = holder.getKey();
+        if (key != null) {
+            user.setId(key.intValue());
+        }
         return user;
     }
 
     private User mapRowToUser(ResultSet row, int rowNumber) throws SQLException {
         return new User(row.getInt("id"),
-                row.getString("name"),
-                row.getString("password"));
+                row.getString("login"),
+                row.getString("password"),
+                row.getInt("score"));
     }
 }

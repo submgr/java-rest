@@ -27,7 +27,7 @@ public class UserController {
         return user;
     }
 
-    @PostMapping("/addUser")
+    @PostMapping("/add-user")
     public User addTask(@RequestBody User user) {
         return userRepository.save(user);
     }
@@ -35,5 +35,5 @@ public class UserController {
     // curl --header "Content-Type: application/json" \
     // --request POST \
     // --data '{"name":"Вася","password":"789"}' \
-    // http://localhost:8080/users/addUser
+    // http://localhost:8080/users/add-user
 }
