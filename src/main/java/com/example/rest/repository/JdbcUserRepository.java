@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
@@ -21,7 +20,6 @@ import com.example.rest.entities.User;
 public class JdbcUserRepository implements UserRepository {
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
     public JdbcUserRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -29,7 +27,7 @@ public class JdbcUserRepository implements UserRepository {
     @Override
     public Optional<User> findByNameAndPassword(String name, String password) {
         List<User> users = jdbcTemplate.query(
-                "SELECT id, login, password, score FROM users WHERE name = ? AND password = ?",
+                "SELECT id, login, password, score FROM users WHERE login = ? AND password = ?",
                 this::mapRowToUser,
                 name,
                 password);

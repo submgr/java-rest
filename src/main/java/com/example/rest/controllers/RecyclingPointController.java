@@ -1,6 +1,5 @@
 package com.example.rest.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +15,6 @@ import com.example.rest.repository.RecyclingPointRepository;
 public class RecyclingPointController {
     private RecyclingPointRepository pointRepository;
 
-    @Autowired
     public RecyclingPointController(RecyclingPointRepository pointRepository) {
         this.pointRepository = pointRepository;
     }
@@ -33,6 +31,6 @@ public class RecyclingPointController {
 
     // curl --header "Content-Type: application/json" \
     // --request POST \
-    // --data '{"city":"Курск", "latitude":"0.0", "longitude":"0.0"}' \
-    // http:// localhost:8080/tasks/add-point
+    // --data '{"city":"Курск", "latitude":"0.01", "longitude":"0.02"}' \
+    // http:// localhost:8080/points/add-point
 }

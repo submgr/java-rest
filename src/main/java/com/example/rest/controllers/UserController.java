@@ -1,6 +1,5 @@
 package com.example.rest.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +15,6 @@ import com.example.rest.repository.UserRepository;
 public class UserController {
     private UserRepository userRepository;
 
-    @Autowired
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -34,6 +32,6 @@ public class UserController {
 
     // curl --header "Content-Type: application/json" \
     // --request POST \
-    // --data '{"name":"Вася","password":"789"}' \
+    // --data '{"login":"Вася", "password":"789"}' \
     // http://localhost:8080/users/add-user
 }

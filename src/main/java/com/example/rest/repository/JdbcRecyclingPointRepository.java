@@ -6,7 +6,6 @@ import java.sql.Types;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
@@ -20,7 +19,6 @@ import com.example.rest.entities.RecyclingPoint;
 public class JdbcRecyclingPointRepository implements RecyclingPointRepository {
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
     public JdbcRecyclingPointRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -37,7 +35,7 @@ public class JdbcRecyclingPointRepository implements RecyclingPointRepository {
     public RecyclingPoint save(RecyclingPoint point) {
         PreparedStatementCreatorFactory psFactory = new PreparedStatementCreatorFactory(
                 "INSERT INTO recycling_points (city, latitude, longitude, specialization, organization, phone, reception_days) values (?, ?, ?, ?, ?, ?, ?)",
-                Types.VARCHAR, Types.DECIMAL, Types.DECIMAL,
+                Types.VARCHAR, Types.REAL, Types.REAL,
                 Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR);
         psFactory.setReturnGeneratedKeys(true);
 
@@ -65,8 +63,8 @@ public class JdbcRecyclingPointRepository implements RecyclingPointRepository {
         return new RecyclingPoint(
                 row.getInt("id"),
                 row.getString("city"),
-                row.getBigDecimal("latitude"),
-                row.getBigDecimal("longitude"),
+                row.getDouble("latitude"),
+                row.getDouble("longitude"),
                 row.getString("specialization"),
                 row.getString("organization"),
                 row.getString("phone"),
