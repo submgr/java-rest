@@ -1,3 +1,4 @@
+--Набор тестовых данных
 DELETE
 FROM recycle_points;
 
@@ -6,81 +7,31 @@ DELETE
 FROM users;
 
 
-INSERT INTO users (name, password)
+INSERT INTO users (login, password)
 VALUES ('Anatoly',
         '123');
 
 
-INSERT INTO users (name, password)
+INSERT INTO users (login, password)
 VALUES ('Aram',
         '456');
 
 
+INSERT INTO recycling_points (city, latitude, longitude, specialization, organization, phone, reception_days)
+VALUES ('Курск',
+        51.720950,
+        36.212637,
+        'Сбор металлолома',
+        'ЛСК Курск',
+        '+7 (919) 176-31-33',
+        'Пн-Сб до 18:00');
 
 
-/*
-INSERT INTO recycle_points (user_id, title, description, date_of_creation, date_of_completion)
-VALUES (1,
-        'Справка',
-        'Взять справку в поликлинике',
-        '2022-12-06',
+INSERT INTO recycling_points (city, latitude, longitude, specialization, organization, phone, reception_days)
+VALUES ('Курск',
+        51.733703,
+        36.191296,
+        NULL,
+        NULL,
+        NULL,
         NULL);
-
-
-INSERT INTO recycle_points (user_id, title, description, date_of_creation, date_of_completion)
-VALUES (1,
-        'Хакатон',
-        'Победить',
-        '2022-12-11',
-        NULL);
-
-
-INSERT INTO recycle_points (user_id, title, description, date_of_creation, date_of_completion)
-VALUES (2,
-        'Хакатон',
-        'Победить',
-        '2022-12-11',
-        NULL);
-/*
-/*
-DELETE
-FROM tasks;
-
-
-DELETE
-FROM users;
-
-
-INSERT INTO users (name, password)
-VALUES ('Anatoly',
-        '123');
-
-
-INSERT INTO users (name, password)
-VALUES ('Aram',
-        '456');
-
-
-INSERT INTO tasks (user_id, title, description, date_of_creation, date_of_completion)
-VALUES (1,
-        'Справка',
-        'Взять справку в поликлинике',
-        '2022-12-06',
-        NULL);
-
-
-INSERT INTO tasks (user_id, title, description, date_of_creation, date_of_completion)
-VALUES (1,
-        'Хакатон',
-        'Победить',
-        '2022-12-11',
-        NULL);
-
-
-INSERT INTO tasks (user_id, title, description, date_of_creation, date_of_completion)
-VALUES (2,
-        'Хакатон',
-        'Победить',
-        '2022-12-11',
-        NULL);
-/*

@@ -6,11 +6,13 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 
-CREATE TABLE IF NOT EXISTS recycle_points (
+CREATE TABLE IF NOT EXISTS recycling_points (
     id IDENTITY NOT NULL,
-    coords_latitude VARCHAR NOT NULL,
-    coords_longitude VARCHAR NOT NULL,
-    organisation VARCHAR NOT NULL,
-    number INT NOT NULL
+    city VARCHAR NOT NULL,
+    latitude DECIMAL NOT NULL, --значения координат должны быть вещественного типа
+    longitude DECIMAL NOT NULL,
+    specialization VARCHAR, --специализация организации/точки сбора
+    organization VARCHAR,
+    phone VARCHAR,
+    reception_days VARCHAR --дни приёма
 );
---REAL CHECK
