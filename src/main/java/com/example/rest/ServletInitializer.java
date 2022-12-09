@@ -9,3 +9,4 @@ public class ServletInitializer extends SpringBootServletInitializer {
 		return application.sources(RestApplication.class);
 	}
 }
+
