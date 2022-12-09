@@ -25,9 +25,12 @@ public class JdbcRecyclingPointRepository implements RecyclingPointRepository {
 
     @Override
     public Iterable<RecyclingPoint> findAllByCity(String city) {
+        //List<RecyclingPoint> points = jdbcTemplate.query(
+        //        "SELECT id, city, latitude, longitude, specialization, organization, phone, reception_days FROM recycling_points WHERE city = ?",
+        //        this::mapRowToRecyclingPoint, city);
         List<RecyclingPoint> points = jdbcTemplate.query(
-                "SELECT id, city, latitude, longitude, specialization, organization, phone, reception_days FROM recycling_points WHERE city = ?",
-                this::mapRowToRecyclingPoint, city);
+                "SELECT id, city, latitude, longitude, specialization, organization, phone, reception_days FROM recycling_points",
+                this::mapRowToRecyclingPoint);
         return points;
     }
 

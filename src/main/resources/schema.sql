@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS recycling_points (
     latitude DOUBLE NOT NULL, --значения координат должны быть вещественного типа
     longitude DOUBLE NOT NULL,
     specialization VARCHAR, --специализация организации/точки сбора
-    organization VARCHAR,
-    phone VARCHAR,
+    organization VARCHAR DEFAULT 'Точка сбора мусора',
+    phone VARCHAR DEFAULT 'Не указан', 
     reception_days VARCHAR --дни приёма
 );
