@@ -34,8 +34,13 @@ java -jar target\rest-1.0-SNAPSHOT.jar
 .\mvnw spring-boot:build-image
 ```
 
+Создание образа из Dockerfile:
+```shell
+docker build --build-arg JAR_FILE=target/*.jar -t itcube46/rest:1.0-SNAPSHOT .
+```
+
 Запуск образа:
 
 ```shell
-docker run -p8080:8080 itcube46/rest:1.0-SNAPSHOT
+docker run -e DATABASE_SERVER=jdbc:h2:mem:db -p 8080:8080 itcube46/rest:1.0-SNAPSHOT
 ```
