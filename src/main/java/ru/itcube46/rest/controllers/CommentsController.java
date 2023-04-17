@@ -21,6 +21,9 @@ public class CommentsController {
     public Iterable<Comment> getAllByUserId(@PathVariable("id") Long userId) {
         return commentsRepository.findAllByUserId(userId);
     }
-    // curl -X GET http://localhost:8080/api/comments/user/3
-    // -u admin@itcube46.ru:qwe
+
+    @GetMapping(path = "/post/{id}")
+    public Iterable<Comment> getAllByPostId(@PathVariable("id") Long postId) {
+        return commentsRepository.findAllByPostId(postId);
+    }
 }

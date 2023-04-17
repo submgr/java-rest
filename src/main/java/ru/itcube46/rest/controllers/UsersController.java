@@ -1,6 +1,7 @@
 package ru.itcube46.rest.controllers;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -14,44 +15,53 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.itcube46.rest.entities.User;
 import ru.itcube46.rest.repositories.UsersRepository;
 
+/**
+ * Контроллеры обрабатывают HTTP-запросы.
+ * Зависимости внедряются автоматически через параметры конструктора.
+ * Аннотации ...Mapping указывают на методы запроса (GET, POST, и т.д.).
+ * Тестировать запросы можно с помощью cURL (см. CURL.md)
+ * или других подобных программ.
+ */
 @RestController
 @RequestMapping(path = "/api/users", produces = "application/json")
 public class UsersController {
     private UsersRepository userRepository;
+    private PasswordEncoder encoder;
 
-    public UsersController(UsersRepository userRepository) {
+    public UsersController(UsersRepository userRepository, PasswordEncoder encoder) {
         this.userRepository = userRepository;
+        this.encoder = encoder;
     }
 
     @GetMapping
-    public Iterable<User> getAllUsers() {
+    public Iterable<User> list() {
         return userRepository.findAll();
     }
-    // curl -X GET http://localhost:8080/api/users
 
-    @GetMapping(path = "/login/{email}/{password}")
-    public User login(@PathVariable("email") String email, @PathVariable("password") String password) {
-        return userRepository.findByEmailAndPassword(email, password).orElse(null);
+    @GetMapping(path = "/{email}")
+    public User getByEmail(@PathVariable("email") String email) {
+        return userRepository.findByEmail(email).orElse(null);
     }
-    // curl -X GET http://localhost:8080/api/users/login/admin@itcube46.ru/qwe
 
-    @PostMapping(path = "/add", consumes = "application/json")
+    @PostMapping(path = "/create", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public User registration(@RequestBody User user) {
+    public User create(@RequestBody User user) {
+        String rawPassword = user.getPassword();
+        String encodedPassword = encoder.encode(rawPassword);
+        user.setPassword(encodedPassword);
         return userRepository.save(user);
     }
-    // curl -H "Content-Type: application/json" -X POST -d \
-    // '{"email":"adm1n@itcube46.ru","password":"qwe","username":"Adm1n","age":0}' \
-    // http://127.0.0.1:8080/api/users/add
 
-    @PatchMapping(path = "/patch/{id}", consumes = "application/json")
-    public User patchUser(@PathVariable("id") Long userId, @RequestBody User userPatch) {
+    @PatchMapping(path = "/update/{id}", consumes = "application/json")
+    public User update(@PathVariable("id") Long userId, @RequestBody User userPatch) {
         User user = userRepository.findById(userId).get();
         if (userPatch.getEmail() != null) {
             user.setEmail(userPatch.getEmail());
         }
         if (userPatch.getPassword() != null) {
-            user.setPassword(userPatch.getPassword());
+            String rawPassword = userPatch.getPassword();
+            String encodedPassword = encoder.encode(rawPassword);
+            user.setPassword(encodedPassword);
         }
         if (userPatch.getUsername() != null) {
             user.setUsername(userPatch.getUsername());
@@ -61,14 +71,10 @@ public class UsersController {
         }
         return userRepository.save(user);
     }
-    // curl -H "Content-Type: application/json" -X PATCH -d \
-    // '{"email":"adm1n@itcube46.ru","password":"asd","username":"Adm1n","age":0}' \
-    // http://127.0.0.1:8080/api/users/patch/66
 
     @DeleteMapping(path = "/delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable("id") Long userId) {
+    public void delete(@PathVariable("id") Long userId) {
         userRepository.deleteById(userId);
     }
-    // curl -X DELETE http://127.0.0.1:8080/api/users/delete/66
 }

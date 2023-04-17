@@ -1,11 +1,12 @@
 -- Набор тестовых данных
 
 -- Пользователи
+-- Пароли шифруются bcrypt (для удобства у всех тестовых пользователей зашифрован пароль password)
 INSERT INTO users (email, password, username, age)
-VALUES  ('admin@itcube46.ru', 'qwe', 'Administrator', 0),
-        ('anatoly@itcube46.ru', '123', 'Murunov Anatoly', 17),
-        ('roman@itcube46.ru', '456', 'Korovin Roman', 14),
-        ('aram@itcube46.ru', '789', 'Virabyan Aram', 17);
+VALUES  ('admin@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Administrator', 0),
+        ('anatoly@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Murunov Anatoly', 17),
+        ('roman@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Korovin Roman', 14),
+        ('aram@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Virabyan Aram', 17);
 
 -- Публикации
 INSERT INTO posts (user_id, title, content, publication_date)

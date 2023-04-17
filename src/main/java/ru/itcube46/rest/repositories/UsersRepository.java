@@ -8,10 +8,11 @@ import org.springframework.data.repository.query.Param;
 
 import ru.itcube46.rest.entities.User;
 
+/**
+ * Репозиторий - слой приложения, который отвечает за операции над данными.
+ * Используется Spring Data JDBC.
+ */
 public interface UsersRepository extends CrudRepository<User, Long> {
     @Query("SELECT * FROM USERS WHERE EMAIL = :email")
     Optional<User> findByEmail(@Param("email") String email);
-
-    @Query("SELECT * FROM USERS WHERE EMAIL = :email AND PASSWORD = :pw")
-    Optional<User> findByEmailAndPassword(@Param("email") String email, @Param("pw") String password);
 }

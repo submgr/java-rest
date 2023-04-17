@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
+        // Настройка CORS (совместного использования ресурсов между разными источниками)
         registry.addMapping("/**").allowedMethods("*");
     }
 }

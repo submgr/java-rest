@@ -12,6 +12,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+ * Класс пользователя.
+ * Для генерации геттеров/сеттеров/конструкторов используется Lombok.
+ * Для отображения объекта пользователя в запись таблицы БД используется
+ * Spring Data JDBC.
+ */
 @Data
 @AllArgsConstructor
 @Table("USERS")
@@ -28,8 +34,8 @@ public class User implements UserDetails {
     private Integer age;
 
     /*
-     * Методы UserDetails с простыми реализациями:
-     * все пользователи активны и имеют привилегию ROLE_USER
+     * Методы интерфейса UserDetails с простыми реализациями:
+     * все пользователи активны и имеют привилегию ROLE_USER.
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
