@@ -13,11 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.extern.slf4j.Slf4j;
+import ru.itcube46.rest.repositories.UsersRepository;
 
 @Slf4j
 @RestController
 @RequestMapping(path = "api/login", produces = "application/json")
 public class LoginController {
+    UsersRepository usersRepository;
+
+    public LoginController(UsersRepository repository) {
+        this.usersRepository = usersRepository;
+    }
+
     @GetMapping
     public String test(@RequestParam(value = "idToken") String idToken, @RequestParam(value = "accessToken") String accessToken) {
         // Construct the URL
@@ -43,6 +50,7 @@ public class LoginController {
             log.info("HTTP 200");
 
             var generatedToken = UUID.randomUUID().toString().replaceAll("-", "0");
+            //usersRepository.saveToken(googleMail, generatedToken);
             return generatedToken;
         } else {
             //ЭТО ПРИМЕР ЗАПРОСА К БАЗЕ ДАННЫХ В ДЖАВА СКРИПТ ДРУГОГО ПРОЕКТА, НО ОЧЕНЬ ПОМОЖЕТ ВАМ! ОНО ДОБАВЛЯЕТ НОВОГО ЮЗЕРА,
