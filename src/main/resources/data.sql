@@ -7,12 +7,15 @@ VALUES  ('admin@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5
         ('anatoly@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Murunov Anatoly', 17,0),
         ('roman@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Korovin Roman', 14,0),
         ('aram@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Virabyan Aram', 17,0);
+--Виктоарины
+INSERT INTO quizzes(title,theme,difficulty)
+VALUES ('Виды треугольников','Геометрия','easy');
 
 --Вопросы (придумать нормальные вопросы)
-INSERT INTO questions (question_id, difficulty, question, answer, question_scores)
-VALUES  (1,'easy','Какая по форме Земля?','a',3),
-        (2,'easy','Сколько будет 2+2?','b',1),
-        (3,'easy','Назовите столицу России.','c',2);
+INSERT INTO questions (quiz_id, question, answer, question_scores)
+VALUES  (1,'Какая градусная сумма у углов треугольника?','180',3),
+        (1,'Как называется треугольник, у которого все стороны равны?','Равносторонний',1),
+        (1,'Сумма квадратов катетов равна квадрату гипотенузы в прямоугольном треугольнике - какя это теорема?','Теорема Пифагора',2);
 
 --Ежедневные ивенты (придумать нормальные вопросы)
 INSERT INTO daily_events (event_id, difficulty, event_name, event_value, answer,escores)

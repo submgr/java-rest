@@ -7,24 +7,28 @@ CREATE TABLE IF NOT EXISTS users (
     age INTEGER ,
     scores INTEGER
 );
-
+--Викторины
+CREATE TABLE IF NOT EXISTS quizzes(
+    id  IDENTITY NOT NULL PRIMARY KEY,
+    title VARCHAR NOT NULL,
+    theme VARCHAR,
+    difficulty VARCHAR
+);
 --Вопросы
 CREATE TABLE IF NOT EXISTS questions(
     id IDENTITY NOT NULL PRIMARY KEY,
-    question_id  BIGINT NOT NULL,
-    difficulty VARCHAR,
+    quiz_id  BIGINT NOT NULL,
     question VARCHAR NOT NULL,
     answer  VARCHAR,
     question_scores INTEGER,
     
-    FOREIGN KEY (question_id) REFERENCES users(id)
+    FOREIGN KEY (quiz_id) REFERENCES quizzes(id)
 
 );
 -- Ежедневные события и задания
 CREATE TABLE IF NOT EXISTS daily_events(
     id IDENTITY NOT NULL PRIMARY KEY,
     event_id BIGINT NOT NULL,
-    difficulty VARCHAR,
     event_name VARCHAR,
     event_value VARCHAR NOT NULL,
     answer VARCHAR,
