@@ -26,3 +26,5 @@ public class DailyEvents {
 
     private Integer escores;
 }
+    private Integer escores;
+}

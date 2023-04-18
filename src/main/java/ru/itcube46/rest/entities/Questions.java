@@ -18,7 +18,8 @@ public class Questions {
     private String question;
 
     private String answer;
-    
-    private Integer question_scores;
-    
+
+    private Integer questionScores;
+
+    private Long questionId;
 }

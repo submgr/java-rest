@@ -14,8 +14,9 @@ CREATE TABLE IF NOT EXISTS questions(
     question_id  BIGINT NOT NULL,
     difficulty VARCHAR,
     question VARCHAR NOT NULL,
-    answer  VARCHAR ,
-    question_scores INTEGER ,
+    answer  VARCHAR,
+    question_scores INTEGER,
+    
     FOREIGN KEY (question_id) REFERENCES users(id)
 
 );
