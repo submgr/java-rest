@@ -2,11 +2,22 @@
 
 -- Пользователи
 -- Пароли шифруются bcrypt (для удобства у всех тестовых пользователей зашифрован пароль password)
-INSERT INTO users (email, password, username, age)
-VALUES  ('admin@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Administrator', 0),
-        ('anatoly@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Murunov Anatoly', 17),
-        ('roman@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Korovin Roman', 14),
-        ('aram@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Virabyan Aram', 17);
+INSERT INTO users (email, password, username, age, scores)
+VALUES  ('admin@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Administrator', 5, 0),
+        ('anatoly@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Murunov Anatoly', 17,0),
+        ('roman@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Korovin Roman', 14,0),
+        ('aram@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Virabyan Aram', 17,0);
+
+--Вопросы (придумать нормальные вопросы)
+INSERT INTO questions (question_id, difficulty, question, answer, question_scores)
+VALUES  (1,'easy','Какая по форме Земля?','a',3),
+        (2,'easy','Сколько будет 2+2?','b',1),
+        (3,'easy','Назовите столицу России.','c',2);
+
+--Ежедневные ивенты (придумать нормальные вопросы)
+INSERT INTO daily_events (event_id, difficulty, event_name, event_value, answer,escores)
+VALUES (1,'easy','Вопрос дня','Куда показывает стрелка компаса?','a',3),
+       (2,'easy','Вопрос от эксперта Теле2','У кого самый быстрый интернет?','a',5);
 
 -- Публикации
 INSERT INTO posts (user_id, title, content, publication_date)

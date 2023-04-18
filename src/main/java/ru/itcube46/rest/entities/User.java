@@ -33,6 +33,8 @@ public class User implements UserDetails {
 
     private Integer age;
 
+    private Integer scores;
+
     /*
      * Методы интерфейса UserDetails с простыми реализациями:
      * все пользователи активны и имеют привилегию ROLE_USER.
