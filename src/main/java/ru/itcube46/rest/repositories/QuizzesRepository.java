@@ -12,4 +12,5 @@ public interface QuizzesRepository extends CrudRepository<Quizzes, Long> {
 */
     @Query("SELECT * FROM QUIZZES WHERE DIFFICULTY = :difficulty")
     Iterable<Quizzes> findAllByDifficulty(@Param("difficulty") String difficulty);
+    
 }
