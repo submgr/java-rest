@@ -49,4 +49,3 @@ CREATE TABLE IF NOT EXISTS learning_videos (
     video_url VARCHAR,
     theme VARCHAR
 );
-
