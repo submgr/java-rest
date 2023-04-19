@@ -25,6 +25,9 @@ VALUES(1,'2023-04-19','easy','Викторина Дня', 10),
       (1,'2023-04-20','easy','Викторина Дня1', 10);
 
 --VALUES ('easy','Вопрос дня','Кто открыл атом?','Эрнест Резерфорд','Исаак Ньютон','Джеймс Джоуль','Эрнест Резерфорд',3);
+--видео
+INSERT INTO learning_videos(video_title,video_url,theme)
+VALUES('Виды и свойства треугольников','','Геометрия');
 
 -- Публикации
 INSERT INTO posts (user_id, title, content, publication_date)
