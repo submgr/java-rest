@@ -12,7 +12,7 @@ import lombok.Data;
 public class Questions {
     @Id
     private Long id;
-    @Id
+    
     private Long quiz_id;
 
     private String question;
