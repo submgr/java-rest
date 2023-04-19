@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR NOT NULL,
     username VARCHAR,
     age INTEGER,
-    scores INTEGER
+    scores INTEGER DEFAULT 0
 );
 --Виктарины
 CREATE TABLE IF NOT EXISTS quizzes(
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS questions(
     variant3 VARCHAR,
     answer VARCHAR,
     question_scores INTEGER,
-    
+
     FOREIGN KEY (quiz_id) REFERENCES quizzes(id)
 
 );
