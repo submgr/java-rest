@@ -7,13 +7,15 @@ CREATE TABLE IF NOT EXISTS users (
     age INTEGER,
     scores INTEGER DEFAULT 0
 );
---Виктарины
+
+--Виктрины
 CREATE TABLE IF NOT EXISTS quizzes(
     id  IDENTITY NOT NULL PRIMARY KEY,
     title VARCHAR NOT NULL,
     theme VARCHAR,
     difficulty VARCHAR
 );
+
 --Вопросы
 CREATE TABLE IF NOT EXISTS questions(
     id IDENTITY NOT NULL PRIMARY KEY,
@@ -25,7 +27,7 @@ CREATE TABLE IF NOT EXISTS questions(
     answer VARCHAR,
     question_scores INTEGER,
 
-    FOREIGN KEY (quiz_id) REFERENCES quizzes(id)
+    FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE
 
 );
 

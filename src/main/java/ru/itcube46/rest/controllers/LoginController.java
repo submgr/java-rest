@@ -42,12 +42,12 @@ public class LoginController {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
         String responseBody = response.getBody();
-        HttpStatusCode statusCode = response.getStatusCode();
+        int statusCode = response.getStatusCodeValue();
         log.info("Response status code: " + statusCode); 
         log.info("Response body: " + responseBody);
 
         // Complete user authentication if successful
-        if (statusCode.equals(200)) {
+        if (statusCode == 200) {
             log.info("HTTP 200");
 
             var generatedToken = UUID.randomUUID().toString().replaceAll("-", "0");

@@ -42,12 +42,12 @@ public class UsersController {
     public User getByEmail(@PathVariable("email") String email) {
         return userRepository.findByEmail(email).orElse(null);
     }
-
+    /* 
     @PostMapping(path = "/create", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@RequestBody User user) {
-        String rawPassword = user.getPassword();
         String encodedPassword = encoder.encode(rawPassword);
+        String rawPassword = user.getPassword();
         user.setPassword(encodedPassword);
         return userRepository.save(user);
     }
@@ -77,4 +77,5 @@ public class UsersController {
     public void delete(@PathVariable("id") Long userId) {
         userRepository.deleteById(userId);
     }
+    */
 }

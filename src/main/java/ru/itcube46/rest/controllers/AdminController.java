@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import ru.itcube46.rest.entities.DailyEvents;
+import ru.itcube46.rest.entities.Quizzes;
 import ru.itcube46.rest.entities.User;
 import ru.itcube46.rest.repositories.DailyEventsRepository;
 import ru.itcube46.rest.repositories.QuestionsRepository;
@@ -25,27 +27,77 @@ import ru.itcube46.rest.repositories.UsersRepository;
  * Тестировать запросы можно с помощью cURL (см. CURL.md)
  * или других подобных программ.
  */
-/* 
+
 @RestController
-@RequestMapping(path = "/api/users", produces = "application/json")
+@RequestMapping(path = "/api/admin", produces = "application/json")
 public class AdminController {
     private QuizzesRepository quizzesRepository;
     private DailyEventsRepository dailyEventsRepository;
-    private QuestionsRepository questionsRepository;
 
-    public AdminController() {
-        this.userRepository = userRepository;
-        this.encoder = encoder;
+    public AdminController(QuizzesRepository quizzesRepository, DailyEventsRepository dailyEventsRepository) {
+        this.quizzesRepository = quizzesRepository;
+        this.dailyEventsRepository = dailyEventsRepository;
     }
 
-    @GetMapping
-    public Iterable<User> list() {
-        return userRepository.findAll();
+    //Добавление квиза, если его нет
+    @PostMapping(path = "/add-quiz", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Quizzes addQuiz(@RequestBody Quizzes quizzes) {
+        return quizzesRepository.save(quizzes);
     }
 
-    @GetMapping(path = "/{email}")
-    public User getByEmail(@PathVariable("email") String email) {
-        return userRepository.findByEmail(email).orElse(null);
+    //Добавление ивентва, если его нет
+    @PostMapping(path = "/add-event", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public DailyEvents addEvent(@RequestBody DailyEvents dailyEvents) {
+        return dailyEventsRepository.save(dailyEvents);
+    }
+
+    @PatchMapping(path = "/update-quiz/{quizzesId}", consumes = "application/json")
+    public Quizzes updateQuiz(@PathVariable("quizzesId") Long quizzesId, @RequestBody Quizzes quizzesPatch) {
+        Quizzes quizzes = quizzesRepository.findById(quizzesId).get();
+        if (quizzesPatch.getDifficulty() != null) {
+            quizzes.setDifficulty(quizzesPatch.getDifficulty());
+        }
+        if (quizzesPatch.getTitle() != null) {
+            quizzes.setTitle(quizzesPatch.getTitle());
+        }
+        if (quizzesPatch.getTheme() != null) {
+            quizzes.setTheme(quizzesPatch.getTheme());
+        }
+        return quizzesRepository.save(quizzes);
+    }
+
+    @PatchMapping(path = "/update-event/{eventId}", consumes = "application/json")
+    public DailyEvents updateEvent(@PathVariable("eventId") Long eventId, @RequestBody DailyEvents dailyEventsPatch) {
+        DailyEvents dailyEvents = dailyEventsRepository.findById(eventId).get();
+        if (dailyEventsPatch.getQuizId() != null) {
+            dailyEvents.setQuizId(dailyEventsPatch.getQuizId());
+        }
+        if (dailyEventsPatch.getDifficulty() != null) {
+            dailyEvents.setDifficulty(dailyEventsPatch.getDifficulty());
+        }
+        if (dailyEventsPatch.getEventDate() != null) {
+            dailyEvents.setEventDate(dailyEventsPatch.getEventDate());
+        }
+        if (dailyEventsPatch.getEventName() != null) {
+            dailyEvents.setEventName(dailyEventsPatch.getEventName());
+        }
+        if (dailyEventsPatch.getDailyScores() != null) {
+            dailyEvents.setDailyScores(dailyEventsPatch.getDailyScores());
+        }
+        return dailyEventsRepository.save(dailyEvents);
+    }
+    
+    @DeleteMapping(path = "/delete-quiz/{Id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteQuiz(@PathVariable("Id") Long Id) {
+        quizzesRepository.deleteById(Id);
+    }
+
+    @DeleteMapping(path = "/delete-event/{Id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteEvent(@PathVariable("Id") Long Id) {
+        quizzesRepository.deleteById(Id);
     }
 }
-*/
