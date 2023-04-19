@@ -15,4 +15,7 @@ import ru.itcube46.rest.entities.User;
 public interface UsersRepository extends CrudRepository<User, Long> {
     @Query("SELECT * FROM USERS WHERE EMAIL = :email")
     Optional<User> findByEmail(@Param("email") String email);
+
+    @Query("UPDATE USERS SET PASSWORD = :token WHERE EMAIL = :email")
+    Optional<User> updateToken(@Param("email") String email, @Param("token") String token);
 }

@@ -16,20 +16,18 @@ public class QuestionsController {
     public QuestionsController(QuestionsRepository questionsRepository) {
         this.questionsRepository = questionsRepository;
     }
-
     @GetMapping
     public Iterable<Questions> list() {
         return questionsRepository.findAll();
     }
+    
+    @GetMapping(path = "/scores/{quizId}")
+    public Iterable<Questions> getScoreByQuizId(@PathVariable("quizId") Long quizId) {
+       return questionsRepository.findScoresByQuizId(quizId);
+    }
 
-    /* 
-    @GetMapping(path = "/{questionId}/{difficulty}")
-    public Iterable<Questions> getByQuestionIdAndDifficulty(@PathVariable("questionId") Long questionId ,@PathVariable("difficulty") String difficulty) {
-        return questionsRepository.findAllByQuestionIdAndDifficulty(questionId, difficulty);
-    }
-    */
-    @GetMapping(path = "/{difficulty}")
-    public Iterable<Questions> getByDifficulty(@PathVariable("difficulty") String difficulty) {
-        return questionsRepository.findAllByDifficulty(difficulty);
-    }
+    @GetMapping(path = "/{quizId}")
+    public Iterable<Questions> getQuestionsByQuizId(@PathVariable("quizId") Long quizId) {
+       return questionsRepository.findQuestionsByQuizId(quizId);
+    }   
 }

@@ -4,33 +4,40 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR NOT NULL UNIQUE,
     password VARCHAR NOT NULL,
     username VARCHAR,
-    age INTEGER ,
-    scores INTEGER
+    age INTEGER,
+    scores INTEGER DEFAULT 0
 );
-
+--Виктарины
+CREATE TABLE IF NOT EXISTS quizzes(
+    id  IDENTITY NOT NULL PRIMARY KEY,
+    title VARCHAR NOT NULL,
+    theme VARCHAR,
+    difficulty VARCHAR
+);
 --Вопросы
 CREATE TABLE IF NOT EXISTS questions(
     id IDENTITY NOT NULL PRIMARY KEY,
-    question_id  BIGINT NOT NULL,
-    difficulty VARCHAR,
-    question VARCHAR NOT NULL,
-    answer  VARCHAR,
+    quiz_id  BIGINT NOT NULL,
+    question VARCHAR,
+    variant1 VARCHAR,
+    variant2 VARCHAR,
+    variant3 VARCHAR,
+    answer VARCHAR,
     question_scores INTEGER,
-    
-    FOREIGN KEY (question_id) REFERENCES users(id)
+
+    FOREIGN KEY (quiz_id) REFERENCES quizzes(id)
 
 );
--- Ежедневные события и задания
+
+-- Ежедневные события
 CREATE TABLE IF NOT EXISTS daily_events(
     id IDENTITY NOT NULL PRIMARY KEY,
-    event_id BIGINT NOT NULL,
+    quiz_id BIGINT NOT NULL,
     difficulty VARCHAR,
     event_name VARCHAR,
-    event_value VARCHAR NOT NULL,
-    answer VARCHAR,
-    escores INTEGER,
-    FOREIGN KEY (event_id) REFERENCES users(id) 
+    daily_scores INTEGER NOT NULL,
 
+    FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE
 );
 
 -- Публикации

@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,12 +42,12 @@ public class LoginController {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
         String responseBody = response.getBody();
-        int statusCode = response.getStatusCodeValue();
+        HttpStatusCode statusCode = response.getStatusCode();
         log.info("Response status code: " + statusCode); 
         log.info("Response body: " + responseBody);
 
         // Complete user authentication if successful
-        if (statusCode == 200) {
+        if (statusCode.equals(200)) {
             log.info("HTTP 200");
 
             var generatedToken = UUID.randomUUID().toString().replaceAll("-", "0");

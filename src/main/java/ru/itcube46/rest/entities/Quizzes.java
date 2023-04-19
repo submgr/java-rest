@@ -1,7 +1,5 @@
 package ru.itcube46.rest.entities;
 
-import java.util.Date;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -10,16 +8,14 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-@Table("DAILY_EVENTS")
-public class DailyEvents {
+@Table("QUIZZES")
+public class Quizzes {
     @Id
     private Long id;
 
-    private Long quizId;
+    private String title;
 
-    private String eventName;
+    private String theme;
 
     private String difficulty;
-
-    public Integer dailyScores;
 }

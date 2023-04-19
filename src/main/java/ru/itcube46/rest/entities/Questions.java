@@ -12,14 +12,19 @@ import lombok.Data;
 public class Questions {
     @Id
     private Long id;
-
-    private String difficulty;
+    
+    private Long quizId;
 
     private String question;
 
+    private String variant1;
+
+    private String variant2;
+
+    private String variant3;
+
     private String answer;
+    
+    private int questionScores;
 
-    private Integer questionScores;
-
-    private Long questionId;
 }
