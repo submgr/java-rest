@@ -27,4 +27,9 @@ public class QuizzesController {
     public Iterable<Quizzes> getByDifficulty(@PathVariable("difficulty") String difficulty) {
         return quizzesRepository.findAllByDifficulty(difficulty);
     }
+
+    @GetMapping(path = "/one/{difficulty}")
+    public Iterable<Quizzes> getOneByDifficulty(@PathVariable("difficulty") String difficulty) {
+        return quizzesRepository.findOneByDifficulty(difficulty);
+    }
 }

@@ -21,8 +21,13 @@ public class QuestionsController {
         return questionsRepository.findAll();
     }
     
-    @GetMapping(path = "/{quizId}")
+    @GetMapping(path = "/scores/{quizId}")
     public Iterable<Questions> getScoreByQuizId(@PathVariable("quizId") Long quizId) {
        return questionsRepository.findScoresByQuizId(quizId);
+    }
+
+    @GetMapping(path = "/{quizId}")
+    public Iterable<Questions> getQuestionsByQuizId(@PathVariable("quizId") Long quizId) {
+       return questionsRepository.findQuestionsByQuizId(quizId);
     }   
 }

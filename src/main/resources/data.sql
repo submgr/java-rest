@@ -9,7 +9,9 @@ VALUES  ('admin@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5
         ('aram@itcube46.ru', '$2a$10$ectAI3ADP4uCJx7l5SdGfugVD7mgrRxt9gIxCbprQ5VGFwCqNAVW2', 'Virabyan Aram', 17,0);
 --Викторины
 INSERT INTO quizzes(title,theme,difficulty)
-VALUES ('Виды треугольников','Геометрия','easy');
+VALUES ('Виды треугольников','Геометрия','easy'),
+        ('Виды ','Геометрия','easy'),
+        ('треугольников ','Геометрия','easy');
 
 --Вопросы
 INSERT INTO questions (quiz_id, question,variant1,variant2,variant3, answer, question_scores)
