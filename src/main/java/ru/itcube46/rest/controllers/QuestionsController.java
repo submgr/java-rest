@@ -16,8 +16,13 @@ public class QuestionsController {
     public QuestionsController(QuestionsRepository questionsRepository) {
         this.questionsRepository = questionsRepository;
     }
+    @GetMapping
+    public Iterable<Questions> list() {
+        return questionsRepository.findAll();
+    }
+
     @GetMapping(path = "/{id}")
-    public Iterable<Questions> getDoubleSumOfScores(@PathVariable("id") Long questionId) {
-        return questionsRepository.doubleSumQuestionsScores(questionId);
+    public Iterable<Questions> getDoubleSumOfScores(@PathVariable("id") Long quizId) {
+       return questionsRepository.doubleSumQuestionsScores(quizId);
     }
 }
