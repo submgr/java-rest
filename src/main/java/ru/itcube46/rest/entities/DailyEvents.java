@@ -19,6 +19,8 @@ public class DailyEvents {
     
     private Date eventDate;
 
+    private Date eventDate;
+
     private String eventName;
 
     private String difficulty;
