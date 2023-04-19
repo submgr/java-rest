@@ -42,7 +42,7 @@ public class LoginController {
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
         String responseBody = response.getBody();
         int statusCode = response.getStatusCodeValue();
-        log.info("Response status code: " + statusCode);
+        log.info("Response status code: " + statusCode); 
         log.info("Response body: " + responseBody);
 
         // Complete user authentication if successful
