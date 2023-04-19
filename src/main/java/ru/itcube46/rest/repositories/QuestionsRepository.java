@@ -6,8 +6,9 @@ import org.springframework.data.repository.query.Param;
 import ru.itcube46.rest.entities.Questions;
 public interface QuestionsRepository extends CrudRepository<Questions, Long> { 
 
-   @Query("SELECT QUESTION_SCORES FROM QUESTIONS WHERE QUESTION_SCORES = :questionScores")
+   @Query("SELECT * FROM QUESTIONS WHERE QUESTION_SCORES = :questionScores")
     Iterable<Questions> doubleSumQuestionsScores(@Param("questionScores") Long questionScores);
 
-
+    @Query("SELECT * FROM QUESTIONS WHERE QUESTION_SCORES = :questionScores")
+    Iterable<Questions> findScoresByQuizId(@Param("questionScores") Long questionScores);
 }

@@ -22,12 +22,7 @@ public class QuizzesController {
         return quizzesRepository.findAll();
     }
 
-    /* 
-    @GetMapping(path = "/{questionId}/{difficulty}")
-    public Iterable<Questions> getByQuestionIdAndDifficulty(@PathVariable("questionId") Long questionId ,@PathVariable("difficulty") String difficulty) {
-        return questionsRepository.findAllByQuestionIdAndDifficulty(questionId, difficulty);
-    }
-    */
+    
     @GetMapping(path = "/{difficulty}")
     public Iterable<Quizzes> getByDifficulty(@PathVariable("difficulty") String difficulty) {
         return quizzesRepository.findAllByDifficulty(difficulty);
