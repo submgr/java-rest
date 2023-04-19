@@ -42,15 +42,34 @@ public class UsersController {
     public User getByEmail(@PathVariable("email") String email) {
         return userRepository.findByEmail(email).orElse(null);
     }
-    /* 
+
     @PostMapping(path = "/create", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@RequestBody User user) {
-        String encodedPassword = encoder.encode(rawPassword);
         String rawPassword = user.getPassword();
+        String encodedPassword = encoder.encode(rawPassword);
         user.setPassword(encodedPassword);
         return userRepository.save(user);
     }
+    @PostMapping(path = "{id}/plusscores/{scores}", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User plusScores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores) {
+            User user = userRepository.findById(userId).get();
+            Integer pscore =  user.getScores() +scores;
+            user.setScores(pscore);
+            return userRepository.save(user);
+    }
+    
+    // @PatchMapping(path = "{id}/plusscores/{scores}", consumes = "application/json")
+    // public User plusScores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores, @RequestBody User userPatch) {
+    //       User user = userRepository.findById(userId).get(); 
+    //       Integer pscore = userPatch.getScores() + scores;
+    //       user.setScores(pscore);
+    //       return userRepository.save(user);
+
+    // }
+
+
 
     @PatchMapping(path = "/update/{id}", consumes = "application/json")
     public User update(@PathVariable("id") Long userId, @RequestBody User userPatch) {
@@ -77,5 +96,5 @@ public class UsersController {
     public void delete(@PathVariable("id") Long userId) {
         userRepository.deleteById(userId);
     }
-    */
+
 }
