@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS questions(
 CREATE TABLE IF NOT EXISTS daily_events(
     id IDENTITY NOT NULL PRIMARY KEY,
     quiz_id BIGINT NOT NULL,
+    event_date DATE NOT NULL,
     difficulty VARCHAR,
     event_name VARCHAR,
     daily_scores INTEGER NOT NULL,
