@@ -5,21 +5,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ru.itcube46.rest.entities.Questions;
-import ru.itcube46.rest.repositories.QuestionsRepository;
+import ru.itcube46.rest.entities.Quizzes;
+import ru.itcube46.rest.repositories.QuizzesRepository;
 
 @RestController
-@RequestMapping(path = "api/questions", produces = "application/json")
-public class QuestionsController {
-    private QuestionsRepository questionsRepository;
+@RequestMapping(path = "api/quizzes", produces = "application/json")
+public class QuizzesController {
+    private QuizzesRepository quizzesRepository;
 
-    public QuestionsController(QuestionsRepository questionsRepository) {
-        this.questionsRepository = questionsRepository;
+    public QuizzesController(QuizzesRepository questionsRepository) {
+        this.quizzesRepository = questionsRepository;
     }
 
     @GetMapping
-    public Iterable<Questions> list() {
-        return questionsRepository.findAll();
+    public Iterable<Quizzes> list() {
+        return quizzesRepository.findAll();
     }
 
     /* 
@@ -29,7 +29,7 @@ public class QuestionsController {
     }
     */
     @GetMapping(path = "/{difficulty}")
-    public Iterable<Questions> getByDifficulty(@PathVariable("difficulty") String difficulty) {
-        return questionsRepository.findAllByDifficulty(difficulty);
+    public Iterable<Quizzes> getByDifficulty(@PathVariable("difficulty") String difficulty) {
+        return quizzesRepository.findAllByDifficulty(difficulty);
     }
 }
