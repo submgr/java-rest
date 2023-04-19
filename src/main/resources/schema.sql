@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR NOT NULL UNIQUE,
     password VARCHAR NOT NULL,
     username VARCHAR,
-    age INTEGER ,
+    age INTEGER,
     scores INTEGER
 );
 --Виктарины
@@ -29,15 +29,18 @@ CREATE TABLE IF NOT EXISTS questions(
 
 );
 
--- Ежедневные события и задания
+-- Ежедневные события
 CREATE TABLE IF NOT EXISTS daily_events(
     id IDENTITY NOT NULL PRIMARY KEY,
-    event_id BIGINT NOT NULL,
+    difficulty VARCHAR,
     event_name VARCHAR,
-    event_value VARCHAR NOT NULL,
+    question VARCHAR,
+    variant1 VARCHAR,
+    variant2 VARCHAR,
+    variant3 VARCHAR,
     answer VARCHAR,
-    escores INTEGER
-
+    question_scores INTEGER
+    
 );
 
 -- Публикации
