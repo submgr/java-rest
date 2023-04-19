@@ -59,7 +59,7 @@ public class UsersController {
             user.setScores(pscore);
             return userRepository.save(user);
     }
-    
+
     // @PatchMapping(path = "{id}/plusscores/{scores}", consumes = "application/json")
     // public User plusScores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores, @RequestBody User userPatch) {
     //       User user = userRepository.findById(userId).get(); 
