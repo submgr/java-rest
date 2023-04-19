@@ -17,6 +17,8 @@ public class DailyEvents {
 
     private Long quizId;
 
+    private Date eventDate;
+
     private String eventName;
 
     private String difficulty;
