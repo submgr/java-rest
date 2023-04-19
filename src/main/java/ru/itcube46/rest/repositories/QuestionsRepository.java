@@ -14,4 +14,11 @@ public interface QuestionsRepository extends CrudRepository<Questions, Long> {
 
     @Query("SELECT * FROM QUESTIONS WHERE quiz_id = :quizId")
     Iterable<Questions> findQuestionsByQuizId(@Param("quizId") Long quizId);
+
+    //@Query("SELECT  CASE WHEN EXISTS (SELECT *FROM QUESTIONS WHERE ANSWER = :answer )THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT) END")
+    //Iterable<Questions> checkAnswerInTable(@Param("answer") String answer);
+
+    @Query("SELECT ANSWER FROM QUESTIONS WHERE ID = :questionId")
+    String findAnswersByQuestion(@Param("questionId" ) Long questionId);
+
 }

@@ -42,6 +42,13 @@ CREATE TABLE IF NOT EXISTS daily_events(
 
     FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE
 );
+--
+CREATE TABLE IF NOT EXISTS learning_videos (
+    id IDENTITY NOT NULL PRIMARY KEY,
+    video_title VARCHAR,
+    video_url VARCHAR,
+    theme VARCHAR
+);
 
 -- Публикации
 CREATE TABLE IF NOT EXISTS posts (
