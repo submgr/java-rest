@@ -8,18 +8,14 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-@Table("QUESTIONS")
-public class Questions {
+@Table("QUIZZES")
+public class Quizzes {
     @Id
     private Long id;
 
+    private String title;
+
+    private String theme;
+
     private String difficulty;
-
-    private String question;
-
-    private String answer;
-
-    private Integer questionScores;
-
-    private Long questionId;
 }
