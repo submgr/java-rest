@@ -13,7 +13,7 @@ public class Questions {
     @Id
     private Long id;
     
-    private Long quiz_id;
+    private Long quizId;
 
     private String question;
 
@@ -25,6 +25,6 @@ public class Questions {
 
     private String answer;
     
-    private int question_scores;
+    private int questionScores;
 
 }

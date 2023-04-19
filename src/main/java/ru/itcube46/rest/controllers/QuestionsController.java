@@ -20,9 +20,10 @@ public class QuestionsController {
     public Iterable<Questions> list() {
         return questionsRepository.findAll();
     }
-
-    @GetMapping(path = "/{id}")
-    public Iterable<Questions> getDoubleSumOfScores(@PathVariable("id") Long quizId) {
-       return questionsRepository.doubleSumQuestionsScores(quizId);
+    /* 
+    @GetMapping(path = "/{questionScores}")
+    public Iterable<Questions> getDoubleSumOfScores(@PathVariable("questionScores") Long questionScores) {
+       return questionsRepository.doubleSumQuestionsScores(questionScores);
     }
+    */
 }

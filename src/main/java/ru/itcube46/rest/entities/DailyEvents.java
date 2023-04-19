@@ -15,14 +15,11 @@ public class DailyEvents {
     @Id
     private Long id;
 
-    private Long eventId;
+    private Long quizId;
 
     private String eventName;
 
-    private String eventValue;
+    private String difficulty;
 
-    private String answer;
-    private Date publicationDate;
-
-    private Integer escores;
+    public Integer dailyScores;
 }

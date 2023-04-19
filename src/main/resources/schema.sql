@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS daily_events(
     quiz_id BIGINT NOT NULL,
     difficulty VARCHAR,
     event_name VARCHAR,
-    daily_scores INTEGER,
+    daily_scores INTEGER NOT NULL,
 
     FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE
 );
