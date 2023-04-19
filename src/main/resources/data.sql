@@ -27,4 +27,4 @@ VALUES(1,'2023-04-19','easy','Викторина Дня', 10),
 --VALUES ('easy','Вопрос дня','Кто открыл атом?','Эрнест Резерфорд','Исаак Ньютон','Джеймс Джоуль','Эрнест Резерфорд',3);
 --видео
 INSERT INTO learning_videos(video_title,video_url,theme)
-VALUES('Виды и свойства треугольников','','Геометрия');
+VALUES('Assembler','https://www.youtube.com/watch?v=015dEE3NnZg','Геометрия');
