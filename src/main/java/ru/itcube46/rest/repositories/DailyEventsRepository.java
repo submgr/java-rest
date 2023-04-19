@@ -13,4 +13,7 @@ public interface DailyEventsRepository extends CrudRepository<DailyEvents, Long>
     
     @Query("SELECT * FROM DAILY_EVENTS WHERE EVENT_ID = :eid")
     Iterable<DailyEvents> findEventById(@Param("eid") Long eventId);
+
+
+    
 }

@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS questions(
     variant3 VARCHAR,
     answer VARCHAR,
     question_scores INTEGER,
-    
     FOREIGN KEY (quiz_id) REFERENCES quizzes(id)
 
 );
@@ -32,15 +31,10 @@ CREATE TABLE IF NOT EXISTS questions(
 -- Ежедневные события
 CREATE TABLE IF NOT EXISTS daily_events(
     id IDENTITY NOT NULL PRIMARY KEY,
+    quiz_id BIGINT NOT NULL,
     difficulty VARCHAR,
     event_name VARCHAR,
-    question VARCHAR,
-    variant1 VARCHAR,
-    variant2 VARCHAR,
-    variant3 VARCHAR,
-    answer VARCHAR,
-    question_scores INTEGER
-    
+    FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE
 );
 
 -- Публикации
