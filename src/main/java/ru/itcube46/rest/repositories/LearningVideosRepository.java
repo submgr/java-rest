@@ -5,7 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import ru.itcube46.rest.entities.LearningVideos;
-
 public interface LearningVideosRepository extends CrudRepository<LearningVideos, String> { 
 
    @Query("SELECT * FROM LEARNING_VIDEOS WHERE VIDEO_TITLE = :videoTitle")
