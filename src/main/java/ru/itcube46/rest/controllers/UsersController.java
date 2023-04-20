@@ -1,6 +1,5 @@
 package ru.itcube46.rest.controllers;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
 
 import ru.itcube46.rest.entities.User;
 import ru.itcube46.rest.repositories.UsersRepository;
@@ -50,6 +50,32 @@ public class UsersController {
         String encodedPassword = encoder.encode(rawPassword);
         user.setPassword(encodedPassword);
         return userRepository.save(user);
+    }
+    @PostMapping(path = "/{id}/plusscores/{scores}", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User plusScores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores) {
+            User user = userRepository.findById(userId).get();
+            Integer pscore =  user.getScores() +scores;
+            user.setScores(pscore);
+            return userRepository.save(user);
+    }
+
+    // @PatchMapping(path = "{id}/plusscores/{scores}", consumes = "application/json")
+    // public User plusScores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores, @RequestBody User userPatch) {
+    //       User user = userRepository.findById(userId).get(); 
+    //       Integer pscore = userPatch.getScores() + scores;
+    //       user.setScores(pscore);
+    //       return userRepository.save(user);
+
+    // }
+
+    @PostMapping(path = "/{id}/plusdoublescores/{scores}", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User plusdoublescores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores) {
+            User user = userRepository.findById(userId).get();
+            Integer pscore =  user.getScores() +scores*2;
+            user.setScores(pscore);
+            return userRepository.save(user);
     }
 
     @PatchMapping(path = "/update/{id}", consumes = "application/json")

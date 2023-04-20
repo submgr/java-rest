@@ -32,4 +32,5 @@ public class QuizzesController {
     public Iterable<Quizzes> getOneByDifficulty(@PathVariable("difficulty") String difficulty) {
         return quizzesRepository.findOneByDifficulty(difficulty);
     }
+    
 }
