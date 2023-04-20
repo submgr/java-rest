@@ -1,5 +1,6 @@
 package ru.itcube46.rest.controllers;
 
+import org.springframework.security.access.event.PublicInvocationEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.websocket.server.PathParam;
+
+import java.util.Optional;
+
 import org.springframework.http.HttpStatus;
 
 import ru.itcube46.rest.entities.User;
@@ -38,10 +44,13 @@ public class UsersController {
         return userRepository.findAll();
     }
 
-    @GetMapping(path = "/{email}")
+    @GetMapping(path = "/email/{email}")
     public User getByEmail(@PathVariable("email") String email) {
         return userRepository.findByEmail(email).orElse(null);
     }
+
+    
+
 
     @PostMapping(path = "/create", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
@@ -51,14 +60,17 @@ public class UsersController {
         user.setPassword(encodedPassword);
         return userRepository.save(user);
     }
-    @PostMapping(path = "/{id}/plusscores/{scores}", consumes = "application/json")
-    @ResponseStatus(HttpStatus.CREATED)
-    public User plusScores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores) {
-            User user = userRepository.findById(userId).get();
-            Integer pscore =  user.getScores() +scores;
-            user.setScores(pscore);
-            return userRepository.save(user);
-    }
+   
+    
+    // @PostMapping(path = "/{userName}/addByName")
+    // @ResponseStatus(HttpStatus.CREATED)
+    // public User addUserName(@PathVariable("userName") String name) {
+    //     String user = userRepository.findUserByName(name);
+    //     if user.get
+    //     return null;
+
+        
+    // }
 
     // @PatchMapping(path = "{id}/plusscores/{scores}", consumes = "application/json")
     // public User plusScores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores, @RequestBody User userPatch) {
@@ -68,14 +80,65 @@ public class UsersController {
     //       return userRepository.save(user);
 
     // }
+    @GetMapping(path = "/{id}")
+    public Optional<User> getUserById(@PathVariable ("id") Long uid){
+ 
+        return userRepository.findByUserId(uid);
+    }
+    @GetMapping(path = "/{id}/getUserName")
+    public String getUserName(@PathVariable ("id") Long uid){
+        User user = userRepository.findById(uid).get();
+        String uName = user.getUsername(); 
+        return uName;
+    }
+    @GetMapping(path = "/{id}/getUserAge")
+    public Integer getUserAge(@PathVariable ("id") Long uid){
+        User user = userRepository.findById(uid).get();
+        Integer uAge = user.getAge(); 
+        return uAge;
+    }
 
-    @PostMapping(path = "/{id}/plusdoublescores/{scores}", consumes = "application/json")
+
+    @PostMapping(path = "/{id}/addByName/{name}", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User addByName(@PathVariable("id") Long userId, @PathVariable("name") String name) {
+            User user = userRepository.findById(userId).get();
+            if (!user.getUsername().equals(name)){
+                user.setUsername(name);
+            }
+            return userRepository.save(user);
+    }
+    @PostMapping(path = "/{id}/plusscores/{scores}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User plusScores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores) {
+            User user = userRepository.findById(userId).get();
+            Integer pscore =  user.getScores() +scores;
+            user.setScores(pscore);
+            return userRepository.save(user);
+    }
+    @PostMapping(path = "/{id}/plusdoublescores/{scores}")
     @ResponseStatus(HttpStatus.CREATED)
     public User plusdoublescores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores) {
             User user = userRepository.findById(userId).get();
             Integer pscore =  user.getScores() +scores*2;
             user.setScores(pscore);
+
             return userRepository.save(user);
+    }
+
+    @PostMapping(path = "/{id}/takescores")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User takescores(@PathVariable("id") Long userId) {
+            User user = userRepository.findById(userId).get();
+            if(user.getScores() - 30>0){
+                Integer pscore =  user.getScores() - 30;
+                user.setScores(pscore);
+                return userRepository.save(user);
+            }else{
+                return user;
+            }
+            
+            
     }
 
     @PatchMapping(path = "/update/{id}", consumes = "application/json")
@@ -103,4 +166,6 @@ public class UsersController {
     public void delete(@PathVariable("id") Long userId) {
         userRepository.deleteById(userId);
     }
+
+
 }

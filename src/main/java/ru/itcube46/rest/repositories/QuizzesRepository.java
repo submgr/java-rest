@@ -16,4 +16,5 @@ public interface QuizzesRepository extends CrudRepository<Quizzes, Long> {
     @Query("SELECT * FROM QUIZZES WHERE DIFFICULTY = :difficulty ORDER BY RAND() LIMIT 1")
     Iterable<Quizzes> findOneByDifficulty(@Param("difficulty") String difficulty);
     
+    
 }

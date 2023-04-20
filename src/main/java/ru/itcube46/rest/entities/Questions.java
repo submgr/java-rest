@@ -14,6 +14,8 @@ public class Questions {
     private Long id;
     
     private Long quizId;
+    
+    private String quizName;
 
     private String question;
 

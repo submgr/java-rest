@@ -7,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -51,7 +52,7 @@ public class LoginController {
 
             var generatedToken = UUID.randomUUID().toString().replaceAll("-", "0");
             //usersRepository.saveToken(googleMail, generatedToken);
-            return generatedToken;
+            return generatedToken; // {token: "vfjvkervj", id: 5}
         } else {
             //ЭТО ПРИМЕР ЗАПРОСА К БАЗЕ ДАННЫХ В ДЖАВА СКРИПТ ДРУГОГО ПРОЕКТА, НО ОЧЕНЬ ПОМОЖЕТ ВАМ! ОНО ДОБАВЛЯЕТ НОВОГО ЮЗЕРА,
             //ЕСЛИ ОН ЗАХОДИТ ВПЕРВЫЕ, А ЕСЛИ НЕ ВПЕРВЫЕ, ТО ОНО ПРОСТО ПЕРЕГЕНЕРИРУЕТ ТОКЕН:)
@@ -64,4 +65,7 @@ public class LoginController {
 
         
     }
+    
+    
+
 }
