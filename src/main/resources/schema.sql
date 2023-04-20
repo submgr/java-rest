@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS quizzes(
 CREATE TABLE IF NOT EXISTS questions(
     id IDENTITY NOT NULL PRIMARY KEY,
     quiz_id  BIGINT NOT NULL,
+    question_number INTEGER,
     question VARCHAR,
     variant1 VARCHAR,
     variant2 VARCHAR,

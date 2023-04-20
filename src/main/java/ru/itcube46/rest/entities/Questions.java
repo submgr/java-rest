@@ -15,6 +15,8 @@ public class Questions {
     
     private Long quizId;
 
+    private Integer questionNumber;
+
     private String question;
 
     private String variant1;
