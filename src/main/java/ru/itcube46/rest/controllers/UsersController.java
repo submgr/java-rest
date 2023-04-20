@@ -43,6 +43,12 @@ public class UsersController {
         return userRepository.findByEmail(email).orElse(null);
     }
 
+    @GetMapping(path = "/{userName}")
+    public User getByUserName(@PathVariable("userName") String email) {
+        return userRepository.findByEmail(email).orElse(null);
+    }
+
+
     @PostMapping(path = "/create", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public User create(@RequestBody User user) {
@@ -51,6 +57,7 @@ public class UsersController {
         user.setPassword(encodedPassword);
         return userRepository.save(user);
     }
+
     @PostMapping(path = "/{id}/plusscores/{scores}", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public User plusScores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores) {
