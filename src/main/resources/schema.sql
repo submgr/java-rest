@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
 --Виктрины
 CREATE TABLE IF NOT EXISTS quizzes(
     id  IDENTITY NOT NULL PRIMARY KEY,
-    title VARCHAR  NOT NULL UNIQUE ,
+    title VARCHAR NOT NULL,
     theme VARCHAR,
     difficulty VARCHAR
 );
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS quizzes(
 CREATE TABLE IF NOT EXISTS questions(
     id IDENTITY NOT NULL PRIMARY KEY,
     quiz_id  BIGINT NOT NULL,
-    quiz_name VARCHAR,
+    question_number INTEGER,
     question VARCHAR,
     variant1 VARCHAR,
     variant2 VARCHAR,
@@ -28,9 +28,7 @@ CREATE TABLE IF NOT EXISTS questions(
     answer VARCHAR,
     question_scores INTEGER,
 
-    FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE,
-    FOREIGN KEY (quiz_name) REFERENCES quizzes(title) ON DELETE CASCADE 
-
+    FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE
 
 );
 
