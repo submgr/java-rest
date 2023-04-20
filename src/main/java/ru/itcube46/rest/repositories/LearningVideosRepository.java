@@ -10,4 +10,7 @@ public interface LearningVideosRepository extends CrudRepository<LearningVideos,
 
    @Query("SELECT * FROM LEARNING_VIDEOS WHERE VIDEO_TITLE = :videoTitle")
    Iterable<LearningVideos> findAllByVideoTitle(@Param("videoTitle") String videoTitle);
+   
+   @Query("SELECT * FROM LEARNING_VIDEOS WHERE THEME = :videoTheme")
+   Iterable<LearningVideos> findAllByVideoTheme(@Param("videoTheme") String videoTheme);
 }
