@@ -96,5 +96,4 @@ public class UsersController {
     public void delete(@PathVariable("id") Long userId) {
         userRepository.deleteById(userId);
     }
-
 }
