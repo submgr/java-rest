@@ -17,8 +17,6 @@ public class Questions {
     
     private String quizName;
 
-    private Integer questionNumber;
-
     private String question;
 
     private String variant1;
