@@ -51,7 +51,7 @@ public class UsersController {
         user.setPassword(encodedPassword);
         return userRepository.save(user);
     }
-    @PostMapping(path = "{id}/plusscores/{scores}", consumes = "application/json")
+    @PostMapping(path = "/{id}/plusscores/{scores}", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public User plusScores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores) {
             User user = userRepository.findById(userId).get();
@@ -69,7 +69,14 @@ public class UsersController {
 
     // }
 
-
+    @PostMapping(path = "/{id}/plusdoublescores/{scores}", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User plusdoublescores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores) {
+            User user = userRepository.findById(userId).get();
+            Integer pscore =  user.getScores() +scores*2;
+            user.setScores(pscore);
+            return userRepository.save(user);
+    }
 
     @PatchMapping(path = "/update/{id}", consumes = "application/json")
     public User update(@PathVariable("id") Long userId, @RequestBody User userPatch) {

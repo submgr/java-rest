@@ -22,11 +22,11 @@ public class LearningVideosController {
         return learningVideosRepository.findAll();
     }
 
-    @GetMapping(path = "/{videoTitle}")
+    @GetMapping(path = "/title/{videoTitle}")
     public Iterable<LearningVideos> getVideoByTitle(@PathVariable("videoTitle") String videoTitle) {
         return learningVideosRepository.findAllByVideoTitle(videoTitle);
     }
-    
+
     @GetMapping(path = "/theme/{theme}")
     public Iterable<LearningVideos> getVideoByTheme(@PathVariable("theme") String theme){
         return learningVideosRepository.findAllByVideoTheme(theme);
