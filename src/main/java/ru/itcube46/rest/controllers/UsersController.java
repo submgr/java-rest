@@ -1,5 +1,6 @@
 package ru.itcube46.rest.controllers;
 
+import org.springframework.security.access.event.PublicInvocationEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.websocket.server.PathParam;
+
+import java.util.Optional;
+
 import org.springframework.http.HttpStatus;
 
 import ru.itcube46.rest.entities.User;
@@ -38,10 +44,19 @@ public class UsersController {
         return userRepository.findAll();
     }
 
-    @GetMapping(path = "/{email}")
+    @GetMapping(path = "/email/{email}")
     public User getByEmail(@PathVariable("email") String email) {
         return userRepository.findByEmail(email).orElse(null);
     }
+
+    @GetMapping(path = "/{userName}")
+    public User getByUserName(@PathVariable("userName") String email) {
+        return userRepository.findByEmail(email).orElse(null);
+    }
+
+
+    
+
 
     @PostMapping(path = "/create", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
@@ -51,6 +66,7 @@ public class UsersController {
         user.setPassword(encodedPassword);
         return userRepository.save(user);
     }
+
     @PostMapping(path = "/{id}/plusscores/{scores}", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public User plusScores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores) {
@@ -59,6 +75,17 @@ public class UsersController {
             user.setScores(pscore);
             return userRepository.save(user);
     }
+   
+    
+    // @PostMapping(path = "/{userName}/addByName")
+    // @ResponseStatus(HttpStatus.CREATED)
+    // public User addUserName(@PathVariable("userName") String name) {
+    //     String user = userRepository.findUserByName(name);
+    //     if user.get
+    //     return null;
+
+        
+    // }
 
     // @PatchMapping(path = "{id}/plusscores/{scores}", consumes = "application/json")
     // public User plusScores(@PathVariable("id") Long userId, @PathVariable("scores") Integer scores, @RequestBody User userPatch) {

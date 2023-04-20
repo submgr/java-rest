@@ -38,5 +38,8 @@ public class QuestionsController {
         String correctAnswer = questionsRepository.findAnswersByQuestion(questionId);
         return (correctAnswer.equals(answer));
     }
-
+    @GetMapping(path ="/QuizName/{quizName}")
+    public Iterable<Questions> getByQuizName(@PathVariable("quizName") String quizName){
+        return questionsRepository.findQuestionsByQuizName(quizName);
+    }
 }
