@@ -17,6 +17,9 @@ public interface QuestionsRepository extends CrudRepository<Questions, Long> {
     //Iterable<Questions> checkAnswerInTable(@Param("answer") String answer);
 
     @Query("SELECT ANSWER FROM QUESTIONS WHERE ID = :questionId")
-    String findAnswersByQuestion(@Param("questionId") Long questionId);
-
+    String findAnswersByQuestion(@Param("questionId" ) Long questionId);
+    
+    @Query("SELECT * FROM QUESTIONS WHERE quiz_name = :quizName")
+    Iterable<Questions> findQuestionsByQuizName(@Param("quizName") String quizName);
+    
 }
