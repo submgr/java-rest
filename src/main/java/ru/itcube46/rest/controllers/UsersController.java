@@ -45,9 +45,9 @@ public class UsersController {
     }
 
     @GetMapping(path = "/{id}")
-    public Optional<User> getUserById(@PathVariable ("id") Long uid){
+    public Optional<User> getUserById(@PathVariable ("id") Long id){
  
-        return userRepository.findByUserId(uid);
+        return userRepository.findByUserId(id);
     }
 
 
@@ -56,7 +56,7 @@ public class UsersController {
         return userRepository.findByEmail(email).orElse(null);
     }
 
-    @GetMapping(path = "/{userName}")
+    @GetMapping(path = "/name/{userName}")
     public User getByUserName(@PathVariable("userName") String email) {
         return userRepository.findByEmail(email).orElse(null);
     }
